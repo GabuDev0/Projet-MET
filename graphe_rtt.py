@@ -11,7 +11,10 @@ with open("ping_results.csv", newline='', encoding='utf-8') as file:
         # convertir la date en datetime
         dt = datetime.strptime(row['Date'], "%Y-%m-%d %H:%M")
         hours.append(dt.hour)
-        rtt_values.append(float(row['Avg RTT (ms)']))
+        ms=row['Avg RTT (ms)']
+        # Si une valeur a été mesurée
+        if ms != '':
+            rtt_values.append(float(row['Avg RTT (ms)']))
 
 # Calc la moyenne du RTT par heure de la journée
 rtt_per_hour = [0]*24
